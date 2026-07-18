@@ -1,0 +1,48 @@
+#version: '3.8'
+
+services:
+  # Week 1 & 2: Cache and Rate Limiting
+  redis:
+    image: redis:7-alpine
+    container_name: local-redis
+    ports:
+      - "6379:6379"
+    restart: always
+
+  # Week 1: Relational Data & Sharding
+  postgres:
+    image: postgres:16-alpine
+    container_name: local-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: system_design_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+  # Week 3: Distributed Chat Messaging
+  kafka:
+    image: apache/kafka:latest
+    container_name: local-kafka
+    ports:
+      - "9092:9092"
+    restart: always
+
+  # Week 4: Cloud Storage Emulation
+  localstack:
+    image: localstack/localstack:latest
+    container_name: local-localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3
+    volumes:
+      - "localstack_data:/var/lib/localstack"
+    restart: always
+
+volumes:
+  postgres_data:
+  localstack_data:

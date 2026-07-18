@@ -1,0 +1,13 @@
+# Java Build Artifacts
+target/
+.gradle/
+build/
+*.class
+
+# IntelliJ IDE Configuration
+.idea/
+*.iml
+
+# Docker/Local Storage (Crucial!)
+postgres_data/
+localstack_data/
